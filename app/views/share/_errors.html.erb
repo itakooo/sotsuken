@@ -1,0 +1,12 @@
+<% if errors.any? %>
+  <div class="alert alert-error">
+    <a class="close" data-dismiss="alert" href="#">×</a>
+    <h4 class="alert-heading"><%= pluralize(errors.count, "error") %> 以下の項目を修正してください:</h4>
+
+    <ul>
+      <% errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

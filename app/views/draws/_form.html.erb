@@ -1,0 +1,55 @@
+<%= form_for(@draw, :url=>@form_to) do |f| %>
+  <% if @draw.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@draw.errors.count, "error") %> prohibited this draw from being saved:</h2>
+
+      <ul>
+      <% @draw.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<h4>各要素</h4>
+	<div id = "interviewer" class = "btn">面接官</div>
+	<div id = "me" class = "btn">私</div>
+	<div id = "whiteboard" class = "btn">ホワイトボード</div>
+
+	<h4>描画領域</h4>
+	<center>
+	<div id = "jquery-ui-draggable-wrap" class = "ui-widget-content">
+	  <!-- 編集時 -->
+	  <% if !@draw.txt.nil? %>
+	    <% strary = @uni.draw.txt.split(",") %>
+		<% i = 0 %>
+		<% while i < strary.length %>
+		   <% p_top = strary[i + 1].to_f %>
+		   <% p_left = strary[i + 2].to_f - 286 + 25 %>
+	
+		   <% if strary[i] == "me" %>
+           <div id="obj_me" style="position:relative; top:<%= p_top %>px; left:<%= p_left %>px;">
+			 <img src="/assets/me.png">
+		   <% elsif strary[i] == "interviewer" %>
+           <div id="obj_interviewer" style="position:relative; top:<%= p_top %>px; left:<%= p_left %>px;">
+			 <img src="/assets/interviewer.png">
+	       </div>
+		   <% end %>
+		 <% i += 3 %>
+		 <% end %>
+	   <% end %>
+	</div>
+	</center>
+
+
+	<h4>メニュー</h4>
+	<div id = "save-button" class = "btn btn-primary">保存</div>
+	<div id = "clear-button" class = "btn btn-danger">クリア</div>
+	</div>
+  </div>
+
+  <div class="form-actions" style="background-color: transparent;">
+	<%= f.hidden_field :txt %>
+	<%= f.submit '次へ', :class => "btn" %>
+  </div>
+<% end %>

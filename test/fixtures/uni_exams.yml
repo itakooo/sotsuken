@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  uni: 
+  start: 2012-05-24
+  end: 2012-05-24
+
+two:
+  uni: 
+  start: 2012-05-24
+  end: 2012-05-24

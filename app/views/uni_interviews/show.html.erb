@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Uni:</b>
+  <%= @uni_interview.uni %>
+</p>
+
+<p>
+  <b>Candidates:</b>
+  <%= @uni_interview.candidates %>
+</p>
+
+<p>
+  <b>Examiners:</b>
+  <%= @uni_interview.examiners %>
+</p>
+
+<p>
+  <b>Time:</b>
+  <%= @uni_interview.time %>
+</p>
+
+<p>
+  <b>Deatails:</b>
+  <%= @uni_interview.deatails %>
+</p>
+
+
+<%= link_to 'Edit', edit_uni_interview_path(@uni_interview) %> |
+<%= link_to 'Back', uni_interviews_path %>

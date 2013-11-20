@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  uni: 
+  candidates: 1
+  examiners: 1
+  time: 1
+  deatails: MyText
+
+two:
+  uni: 
+  candidates: 1
+  examiners: 1
+  time: 1
+  deatails: MyText

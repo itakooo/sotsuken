@@ -1,0 +1,60 @@
+<%= form_for(@account,:html => {:class => "form-horizontal"}) do |f| %>
+  <% if @account.errors.any? %>
+    <div id="error_explanation">
+      <h2> 以下の項目を修正してください</h2>
+
+      <ul>
+      <% @account.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :学籍番号,{:class => "control-label"} %>
+    <div class="controls">
+        <%= f.text_field :student_id,{:class => "span2"} %>
+        <p class="help-block">※必須 5文字の半角数字</p>
+    </div>
+  </div>
+  
+  <div class="control-group">
+    <%= f.label :名前,{:class => "control-label"} %>
+    <div class="controls">
+        <%= f.text_field :name,:class => "span3" %>        
+        <p class="help-block">※必須</p>
+    </div>
+  </div>
+  
+  <div class="control-group">
+    <%= f.label :学科,{:class => "control-label"} %>
+    <div class="controls">
+      <%= f.select( :major, 
+            {'M' => 1, 'E' => 2, 'S' => 3, 'J' => 4, 'C' => 5},
+            {},{:class => "span2"})%>
+      <p class="help-block">※必須</p>
+    </div>
+  </div>
+  
+  <div class="control-group">
+		<%= f.label :パスワード,{:class => "control-label"} %>
+    <div class="controls">
+      <%= f.password_field :password, {:class => "span2"} %>
+      <p class="help-block">※必須</p>
+    </div>
+  </div>
+  
+  <div class="control-group">
+		<%= f.label :パスワード（確認用）,{:class => "control-label"} %>
+    <div class="controls">
+      <%= f.password_field :password_confirmation, {:class => "span2"}%>
+      <p class="help-block">※必須</p>
+    </div>
+  </div>
+  
+  <div class="form-actions" style="background-color: transparent;">
+    <%= f.submit '登録', {:class => "btn"} %>
+  </div>
+  
+<% end %>

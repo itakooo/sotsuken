@@ -1,0 +1,24 @@
+// Place all the styles related to the uni_interviews controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#jquery-ui-draggable-wrap {
+	width: 300px;
+	height: 200px;
+	/* position: absolute; */
+	/* top: 200px; */
+	/* left: 200px; */
+	padding-left: 10px;
+	padding-top: 10px;
+	margin: 0;
+	border-style: dashed;
+	border-radius: 10px;
+}
+
+#jquery-ui-draggable {
+	width: 50px;
+	height: 50px;
+	padding: 0px;
+	margin: 0;
+	border-radius: 0px;
+}

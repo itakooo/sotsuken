@@ -1,0 +1,22 @@
+<div class = "table">
+    <table>
+      <tr>
+        <th>科目名</th>
+        <th>試験時間</th>
+        <th>詳細</th>
+        <th></th>
+        <th></th>
+      </tr>
+
+    <% @uni.uni_subjects.each do |uni_subject| %>
+      <tr>
+        <td><%= uni_subject.subject %></td>
+        <td><%= uni_subject.time %>分</td>
+        <td><%= uni_subject.details %></td>
+        <td><%= link_to '編集', edit_uni_uni_subject_path(@uni,uni_subject) %></td>
+        <td><%= link_to '削除', uni_uni_subject_path(@uni,uni_subject.id), confirm: 'Are you sure?', method: :delete %></td>
+      </tr>
+    <% end %>
+    </table>
+</div>
+<%= link_to '新規科目追加', new_uni_uni_subject_path(@uni), :class=>"btn" %>

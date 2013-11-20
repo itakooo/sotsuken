@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>E type:</b>
+  <%= @draw.e_type %>
+</p>
+
+<p>
+  <b>Xcoor:</b>
+  <%= @draw.xcoor %>
+</p>
+
+<p>
+  <b>Ycoor:</b>
+  <%= @draw.ycoor %>
+</p>
+
+
+<%= link_to 'Edit', edit_draw_path(@draw) %> |
+<%= link_to 'Back', draws_path %>

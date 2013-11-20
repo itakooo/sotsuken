@@ -1,0 +1,191 @@
+<%= javascript_include_tag "my" %>
+<%= form_for(@emp,:html => {:class => "form-horizontal"}) do |f| %>
+  <% if @emp.errors.any? %>
+    <div id="error_explanation">
+      <h2>基本情報に関して、以下の項目を修正してください</h2>
+
+      <ul>
+      <% @emp.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <% if @emp.emp_submission.errors.any? %>
+    <div id="error_explanation">
+      <h2>提出書類に関して、以下の項目を修正してください</h2>
+
+      <ul>
+      <% @emp.emp_submission.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <% if @emp.emp_briefing.errors.any? %>
+    <div id="error_explanation">
+      <h2>説明会に関して、以下の項目を修正してください</h2>
+
+      <ul>
+      <% @emp.emp_briefing.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <% if @emp.emp_webtest.errors.any? %>
+    <div id="error_explanation">
+      <h2>説明会に関して、以下の項目を修正してください</h2>
+
+      <ul>
+      <% @emp.emp_webtest.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= field_set_tag '基本情報' do %>
+  基本的な情報を登録してください。
+    <div class="control-group">
+      <%= f.label :name, '企業等名称',{:class => "control-label"} %>
+      <div class="controls">
+        <%= f.text_field :name ,{:class => "span3"}%>        
+        <p class="help-block">※必須</p>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :location, '所在地',{:class => "control-label"} %>
+      <div class="controls">
+        <%= f.text_field :location,{:class => "span3"} %>
+        <p class="help-block">※必須</p>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <%= f.label :glouping, '応募区分',{:class => "control-label"} %>
+      <div class="controls">
+        <%= f.select( :glouping, {'推薦' => true, '自由' => false},{},{:class => "span1"})%>
+      </div>
+    </div>
+  <% end %>
+    
+  <%= field_set_tag '提出書類について' do %>
+  提出した書類にチェックしてください。
+  この中にないものを提出した場合、その他の欄に入力してください。
+    <div class="control-group">
+      <%= f.label :submit, '書類提出日',{:class => "control-label"} %>
+      <div class="controls">
+        <%= f.date_select :submit, {:use_month_numbers => true},{:class => "span1"} %>
+      </div>
+    </div>
+  
+    <%= fields_for @emp.emp_submission do |es|%>
+    <div class="control-group">
+          <div class="controls">
+            <label class="checkbox"><%= es.check_box :graduate %>卒業証明書</label>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="controls">
+            <label class="checkbox"><%= es.check_box :result %>成績証明書</label>
+          </div>
+        </div>
+
+        <div class="control-group">
+          <div class="controls">
+            <label class="checkbox"><%= es.check_box :resume %>履歴書</label>
+          </div>
+        </div>
+        
+        <div class="control-group">
+          <div class="controls">
+            <label class="checkbox"><%= es.check_box :recommendation %>推薦書</label>
+          </div>
+        </div>
+        
+        <div class="control-group">
+          <div class="controls">
+            <label class="checkbox"><%= es.check_box :medical %>健康診断書</label>
+          </div>
+        </div>
+        
+        <div class="control-group">
+          <%= es.label :other, 'その他',{:class => "control-label"} %>
+          <div class="controls">
+            <%= es.text_field :other,{:class => "span3"} %>
+          </div>
+        </div>
+    <% end %>
+  <% end %>
+  
+  <%= field_set_tag '説明会' do %>
+  事前に企業の説明に参加した方のみ、説明会についての情報を入力してください。
+    <%= fields_for @emp.emp_briefing do |eb|%>
+        <div class="control-group">
+            <%= eb.label :day, '実施日',{:class => "control-label"} %>
+            <div class="controls">
+              <%= eb.date_select :day, {:use_month_numbers => true}, {:class => "span1"} %>
+            </div>
+        </div>
+        <div class="control-group">
+            <%= eb.label :location, '実施場所',{:class => "control-label"} %>
+            <div class="controls">
+              <%= eb.text_field :location, {:class => "span3"} %>
+            </div>
+        </div>
+        <div class="control-group">
+            <%= eb.label :details, '実施内容',{:class => "control-label"} %>
+            <div class="controls">
+              <%= eb.text_area :details, {:class=>"span4",:rows=>8} %>
+            </div>
+        </div>
+    <% end %>
+  <% end %>
+  
+  <%= field_set_tag 'Webテスト' do %>
+  webテストを行った方のみ、情報を入力してください。
+    <%= fields_for @emp.emp_webtest do |ew|%>
+        <div class="control-group">
+            <%= ew.label :day, '実施日', {:class => "control-label"} %>
+            <div class="controls">
+              <%= ew.date_select :day, {:use_month_numbers => true}, {:class=>"span1"} %>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <%= ew.label :location, '実施場所', {:class => "control-label"} %>
+            <div class="controls">
+              <%= ew.text_field :location, {:class=>"span3"} %>
+            </div>
+        </div>
+        
+        <div class="control-group">
+            <%= ew.label :details, '実施内容', {:class => "control-label"} %>
+            <div class="controls">
+              <%= ew.text_area :details, {:class=>"span4",:rows=>8} %>
+            </div>
+        </div>
+    <% end %>
+  <% end %>
+  
+  <%= field_set_tag 'エントリーシート' do %>
+  エントリーシートに記載した内容を出来るだけ詳細に入力してください。
+    <div class="control-group">
+      <%= f.label :entrysheet, 'エントリーシートの内容', {:class => "control-label"} %>
+      <div class="controls">
+        <%= f.text_area :entrysheet, {:class=>"span4",:rows=>8} %>
+      </div>
+    </div>
+  <% end %>
+  
+  <div class="form-actions" style="background-color:transparent;">
+    <%= f.submit '次へ',:class=>"btn"%>
+  </div>
+  
+<% end %>

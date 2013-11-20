@@ -1,0 +1,36 @@
+<% content_for :extend do %>
+  <div class="hero-unit" style="background-color: #ffffff;">
+	<center>
+      <h1>試験報告書閲覧システム</h1>
+      <p>就職試験報告書、進学試験報告書を利用できるシステムです。
+	  <% if !session[:usr] %>
+      <br>利用するには右上からログインしてください。</p>
+	  <% else %>
+	  <br>マイページから報告書を作成できます。</p>
+	  <% end %>
+	</center>
+  </div>
+<%end%>
+
+ <div class="row-fluid">
+    <div class="span4 waku" style="background-color: #5bc0de;">
+      <h2>就職試験報告書</h2>
+      <p>就職試験報告書は先輩方が残してきた就職試験に関する情報です。
+      面接の内容についての情報を利用し面接の対策を建てることができるかも。</p>
+      <div>
+          <%= link_to '就職試験報告書を見る', emps_path, :class => "btn" %>
+      </div>
+    </div>
+    <div class="span4 waku" style="background-color: #62c462;">
+      <h2>進学試験報告書</h2>
+      <p>進学試験報告書は先輩方が残してきた進学試験に関する情報です。
+      試験科目の種類や、推薦面接の内容についての情報などを利用し、
+      受験の対策を建てることができるかも。</p>
+      <%= link_to '進学試験報告書を見る', unis_path, :class => "btn" %>
+    </div>
+    <div class="span4 waku" style="background-color: #fbb450;">
+      <h2>マイページ</h2>
+      <p>自分の作成した報告書を編集したり、新しい報告書を作成できます。<p>
+      <%= link_to 'マイページを見る', mypage_accounts_path, :class => "btn" %>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<h1>Listing draws</h1>
+
+<table>
+  <tr>
+    <th>E type</th>
+    <th>Xcoor</th>
+    <th>Ycoor</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @draws.each do |draw| %>
+  <tr>
+    <td><%= draw.e_type %></td>
+    <td><%= draw.xcoor %></td>
+    <td><%= draw.ycoor %></td>
+    <td><%= link_to 'Show', draw %></td>
+    <td><%= link_to 'Edit', edit_draw_path(draw) %></td>
+    <td><%= link_to 'Destroy', draw, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Draw', new_draw_path %>

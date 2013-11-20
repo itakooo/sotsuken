@@ -1,0 +1,37 @@
+<h1>Listing emps</h1>
+
+<table>
+  <tr>
+    <th>Account</th>
+    <th>Name</th>
+    <th>Location</th>
+    <th>Glouping</th>
+    <th>Submit</th>
+    <th>Entrysheet</th>
+    <th>Implession</th>
+    <th>Advice</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @emps.each do |emp| %>
+  <tr>
+    <td><%= emp.account.id %></td>
+    <td><%= emp.name %></td>
+    <td><%= emp.location %></td>
+    <td><%= emp.glouping %></td>
+    <td><%= emp.submit %></td>
+    <td><%= emp.entrysheet %></td>
+    <td><%= emp.implession %></td>
+    <td><%= emp.advice %></td>
+    <td><%= link_to 'Show', emp %></td>
+    <td><%= link_to 'Edit', edit_emp_path(emp) %></td>
+    <td><%= link_to 'Destroy', emp, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Emp', new_emp_path %>

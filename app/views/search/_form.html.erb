@@ -1,0 +1,30 @@
+<div class="waku">
+  <b>検索</b>
+  <%= form_tag({:action => 'result'}, {:class => "form-horizontal"}) do %>
+    
+    <div class="control-group">
+      <label class="control-label">報告書の種類</label>
+      <div class="controls">
+        <%= select_tag :target, options_for_select( {"就職試験報告書" => false, "進学試験報告書" => true}),{:class => "span2"} %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label">企業、大学名</label>
+      <div class="controls">
+        <%= text_field_tag :name, '',{:class => "input-medium search-query"} %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label">企業、大学の所在地</label>
+      <div class="controls">
+        <%= text_field_tag :location, '',{:class => "input-medium search-query"} %>
+      </div>
+    </div>
+    
+    <div class="form-actions">
+      <%= submit_tag '検索', {:class => "btn"}%>
+    </div>
+  <% end %>
+</div>

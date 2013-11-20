@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  emp: 
+  day: 2012-05-24
+  location: MyString
+  details: MyText
+
+two:
+  emp: 
+  day: 2012-05-24
+  location: MyString
+  details: MyText

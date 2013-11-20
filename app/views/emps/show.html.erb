@@ -1,0 +1,105 @@
+<p id="notice"><%= notice %></p>
+
+<div class = "created">
+  作成日:<%= @emp.created_at.strftime("%Y年%m月%d日") %><br/>
+  作成者:<%= @emp.account.student_id %>
+</div>
+
+<div class = "title">
+  就職試験報告書
+</div>
+<table class="table table-bordered">
+    <tbody>
+        <tr><td width=20%>企業等名称</td><td colspan=2><%= @emp.name %></td></tr>
+        <tr><td>所在地</td><td colspan=2><%= @emp.location %></td></tr>
+        <tr><td>応募区分</td><td colspan=2>
+            <% if @emp.glouping %>
+              推薦
+            <% else %>
+              自由
+            <% end %></td></tr>
+        <tr><td>書類提出日</td><td colspan=2><%= @emp.submit.strftime("%Y年%m月%d日") %></td></tr>
+        <tr><td>提出した書類</td><td colspan=2>
+            <% if @emp.emp_submission.graduate %>
+              卒業証明書 <br />
+            <% end %>
+            <% if @emp.emp_submission.result %>
+              成績証明書 <br />
+            <% end %>
+            <% if @emp.emp_submission.resume %>
+              履歴書 <br />
+            <% end %>
+            <% if @emp.emp_submission.recommendation %>
+              推薦書 <br />
+            <% end %>
+            <% if @emp.emp_submission.medical %>
+              健康診断書 <br />
+            <% end %>
+            <% if @emp.emp_submission.other.blank? %>
+              <%= @emp.emp_submission.other %>
+            <% end %></td></tr>
+        
+        <% if !@emp.entrysheet.blank? %>
+          <tr><td>エントリーシートの内容</td><td colspan=2><%=simple_format @emp.entrysheet%></td></tr>
+        <% end %>
+        
+        <% if !@emp.emp_briefing.details.blank? %>
+          <tr><td rowspan=3>説明会</td>
+            <td colspan=2>実施日　:　<%= @emp.emp_briefing.day.strftime("%Y年%m月%d日") %></td></tr>
+          <tr><td colspan=2>実施場所　:　<%= @emp.emp_briefing.location %></td></tr>
+          <tr><td colspan=2>詳細　：　<%= simple_format @emp.emp_briefing.details %></td></tr>
+        <% end %>
+        
+        <% if !@emp.emp_webtest.details.blank? %>
+          <tr><td rowspan=3>webテスト</td>
+            <td colspan=2>実施日　:　<%= @emp.emp_briefing.day.strftime("%Y年%m月%d日") %></td></tr>
+          <tr><td colspan=2>実施場所　:　<%= @emp.emp_briefing.location %></td></tr>
+          <tr><td colspan=2>詳細　:　<%= simple_format @emp.emp_briefing.details %></td></tr>
+        <% end %>
+        
+        <% @emp.emp_selections.each do |selection| %>
+          <tr><td rowspan=<%=@selection_row.shift%> >
+            <% if selection.glouping == 4 %>最終選考
+            <% else %> <%= selection.glouping %>次選考
+            <% end %></td>
+            <td width=20% >試験日程</td>
+            <td><%= selection.start.strftime("%Y年%m月%d日") -%>
+                ～<%= selection.end.strftime("%Y年%m月%d日") %></td></tr>
+          <tr><td>実施場所</td><td><%= selection.location %></td></tr>
+          
+          <% if selection.emp_test.kind %>
+            <tr><td rowspan=2>筆記試験</td>
+              <td>試験の種類　：　
+                <% case selection.emp_test.kind %>
+                <% when 1 %>
+                  会社独自
+                <% when 2 %>
+                  SPI
+                <% when 3 %>
+                  その他
+                <% end %></td></tr>
+            <tr><td>詳細　:　<%= simple_format selection.emp_test.details%></td></tr>
+          <% end %>
+          
+          <tr><td rowspan= <%=@interview_row.shift%> >面接</td>
+            <td>面接官の人数:　：　<%= selection.emp_interview.candidates %>人</td></tr>
+          <% if selection.emp_interview.examiners %>
+            <tr><td>集団面接の人数　：　<%= selection.emp_interview.examiners %>人</td></tr>
+          <% end %>
+          <tr><td>面接時間　：　<%= selection.emp_interview.time %>分</td></tr>
+          <tr><td>面接詳細　：　<%= simple_format selection.emp_interview.details %></td></tr>
+          
+          <tr><td>結果発表日</td>
+            <td><%= selection.result_date.strftime("%Y年%m月%d日") %></td></tr>
+          <tr><td>結果</td><td>
+            <% if selection.result %>
+              合格
+            <% else %>
+              不合格
+            <% end %></td></tr>
+        <% end %>
+        
+        <tr><td>感想</td><td colspan=2><%= simple_format @emp.impression %></td></tr>
+        <tr><td>後輩へのアドバイス</td><td colspan=2><%= simple_format @emp.advice %></td></tr>
+    </tbody>
+</table>

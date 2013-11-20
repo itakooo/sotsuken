@@ -1,0 +1,26 @@
+class Account < ActiveRecord::Base
+	has_many :unis
+	has_many :emps
+	
+	validates :student_id,
+		:presence => true,
+		:uniqueness => true,
+		:length => { :is => 5 },
+		:format => { :with => /^[0-9]{5}$/ }
+	validates :name,
+		:presence => true,
+		:length => { :maximum => 30, :minimum => 1}
+	validates :major,
+		:presence => true,
+		:numericality => {:only_integer => true, :greater_than => 0, :less_than => 6}
+	validates :password,
+		:presence => true,
+        :confirmation => true
+		#:length => { :maximum => 16, :minimum => 4}
+    
+    def self.authenticate(student,password)
+        where(:student_id => student,
+            :password => Digest::SHA1.hexdigest(password)).first
+    end
+    
+end

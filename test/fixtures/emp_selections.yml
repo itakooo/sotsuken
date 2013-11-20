@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  emp: 
+  glouping: 1
+  start: 2012-05-24
+  end: 2012-05-24
+  location: MyString
+  result_date: 2012-05-24
+  result: false
+
+two:
+  emp: 
+  glouping: 1
+  start: 2012-05-24
+  end: 2012-05-24
+  location: MyString
+  result_date: 2012-05-24
+  result: false

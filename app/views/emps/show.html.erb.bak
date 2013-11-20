@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Account:</b>
+  <%= @emp.account.major %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @emp.name %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @emp.location %>
+</p>
+
+<p>
+  <b>Glouping:</b>
+  <%= @emp.glouping %>
+</p>
+
+<p>
+  <b>Submit:</b>
+  <%= @emp.submit %>
+</p>
+
+<p>
+  <b>Entrysheet:</b>
+  <%= @emp.entrysheet %>
+</p>
+
+<p>
+  <b>Implession:</b>
+  <%= @emp.implession %>
+</p>
+
+<p>
+  <b>Advice:</b>
+  <%= @emp.advice %>
+</p>
+
+
+<%= link_to 'Edit', edit_emp_path(@emp) %> |
+<%= link_to 'Back', emps_path %>

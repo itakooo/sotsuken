@@ -1,0 +1,8 @@
+<div class=search>
+    <%= form_tag({:controller => 'search',:action => 'result_uni'}, {:class => "form-inline"}) do -%>
+        
+        <%= text_field_tag :name, '',{:class => "input-medium search-query",:placeholder=>"学校名"} -%>
+        <%= submit_tag '検索', {:class => "btn"} -%>
+    <% end %>
+</div>
+<hr>

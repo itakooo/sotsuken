@@ -1,0 +1,19 @@
+<% content_for :extend do %>
+  <div class="row-fluid">
+    <div class="span2">
+    </div>
+    <div class="span8 waku" style="background-color:#ffffff;">
+      <%= render 'form_uni' %>
+    </div>
+    <div class="span2">
+    </div>
+  </div>
+<% end %>
+
+<% if @unis.blank? %>
+  <h3>検索結果</h3>
+  見つかりませんでした。
+<% else %>
+  <h3>検索結果</h3>
+  <%= render 'unis/index_table' %>
+<% end %>

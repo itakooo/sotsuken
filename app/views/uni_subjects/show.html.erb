@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Uni:</b>
+  <%= @uni_subject.uni %>
+</p>
+
+<p>
+  <b>Subject:</b>
+  <%= @uni_subject.subject %>
+</p>
+
+<p>
+  <b>Details:</b>
+  <%= @uni_subject.details %>
+</p>
+
+<p>
+  <b>Time:</b>
+  <%= @uni_subject.time %>
+</p>
+
+
+<%= link_to 'Edit', edit_uni_subject_path(@uni_subject) %> |
+<%= link_to 'Back', uni_subjects_path %>

@@ -1,0 +1,16 @@
+<h2>進学報告書編集 2/4</h2>
+この報告書には以下のテスト科目が登録されています。
+<br /><br />
+
+<%= render 'index_table' %>
+
+<br />
+<br />
+
+
+<!-- 11/9 追加 -->
+<% if !@uni.uni_interview.blank? %>
+  <%= link_to '次へ', edit_uni_uni_interview_path(@uni,@uni.uni_interview), :class=>"btn" %>
+<% else %>  
+  <%= link_to '次へ', new_uni_uni_interview_path(@uni), :class=>"btn" %>
+<% end %>

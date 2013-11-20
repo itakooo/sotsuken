@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<h3>アカウント情報</h3>
+
+<p>
+  <b>アカウントID:</b>
+  <%= @account.id %>
+</p>
+
+<p>
+  <b>名前:</b>
+  <%= @account.name %>
+</p>
+
+<p>
+  <b>学科:</b>
+  <% if @account.major == 1 %>
+  M科
+  <% elsif @account.major == 2 %>
+  E科
+  <% elsif @account.major == 3 %>
+  S科
+  <% elsif @account.major == 4 %>
+  J科
+  <% elsif @account.major == 5 %>
+  C科
+  <% end %>
+</p>
+
+</br>
+<%= link_to '編集', edit_account_path(@account), :class=>"btn"%> 
+<!-- <%= link_to 'ログイン', accounts_path, :class=>"btn" %> -->

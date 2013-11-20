@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  emp_selection: 
+  candidates: 1
+  examiners: 1
+  time: 1
+  details: MyText
+
+two:
+  emp_selection: 
+  candidates: 1
+  examiners: 1
+  time: 1
+  details: MyText

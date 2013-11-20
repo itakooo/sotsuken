@@ -1,0 +1,29 @@
+<h1>Listing uni_subjects</h1>
+
+<table>
+  <tr>
+    <th>Uni</th>
+    <th>Subject</th>
+    <th>Details</th>
+    <th>Time</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @uni_subjects.each do |uni_subject| %>
+  <tr>
+    <td><%= uni_subject.uni %></td>
+    <td><%= uni_subject.subject %></td>
+    <td><%= uni_subject.details %></td>
+    <td><%= uni_subject.time %></td>
+    <td><%= link_to 'Show', uni_subject %></td>
+    <td><%= link_to 'Edit', edit_uni_uni_subject_path(@uni,uni_subject) %></td>
+    <td><%= link_to 'Destroy', uni_uni_subject_path(@uni,uni_subject.id), confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Uni subject', new_uni_subject_path %>

@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<%= render "search/form_emp_simple" %>
+
+<h2>就職試験報告書一覧</h2>
+
+<%= render 'index_table' %>
+
+<%= link_to '就職試験報告書の新規作成', new_emp_path, :class => 'btn' %>

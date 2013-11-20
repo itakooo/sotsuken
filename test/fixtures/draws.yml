@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  e_type: 1
+  xcoor: 1.5
+  ycoor: 1.5
+
+two:
+  e_type: 1
+  xcoor: 1.5
+  ycoor: 1.5

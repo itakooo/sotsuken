@@ -1,0 +1,36 @@
+<%= javascript_include_tag "my" %>
+<%= form_for(@uni_subject,:url => @form_to,:html => {:class => "form-horizontal"}) do |f| %>
+  <% if @uni_subject.errors.any? %>
+    <div id="error_explanation">
+      <h2>以下の項目を修正してください。</h2>
+
+      <ul>
+      <% @uni_subject.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="control-group">
+    <%= f.label :subject, "試験科目",{:class => "control-label"} %>
+    <div class="controls">
+      <%= f.text_field :subject, {:class => "span2"} %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :time, "試験時間",{:class => "control-label"} %>
+    <div class="controls">
+      <%= f.number_field :time, :size => "5x5", :step => 5, :class => "span1" %>
+    </div>
+  </div>
+  <div class="control-group">
+    <%= f.label :details, "詳細",{:class => "control-label"} %>
+    <div class="controls">
+      <%= f.text_area :details , {:class=>"span4",:rows=>8}%>
+    </div>
+  </div>
+  <div class="form-actions" style="background-color: transparent;">
+    <%= f.submit '完了', :class => "btn"%>
+  </div>
+<% end %>

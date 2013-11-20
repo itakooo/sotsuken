@@ -1,0 +1,117 @@
+<%= stylesheet_link_tag "draws", :media => "all" %>
+<%= javascript_include_tag "unis" %>
+<p id="notice"><%= notice %></p> <!-- クッキー関係 -->
+
+<div class = "created">
+  作成日 : <%= @uni.created_at.strftime("%Y年%m月%d日") %><br/>
+  作成者 : <%= @uni.account.student_id %>
+</div>
+
+<div class = "title">
+  進学試験報告書
+</div>
+<table class="table table-bordered">
+    <tbody>
+        <tr><td width=20%>大学名</td><td colspan=3><%= @uni.name %></td></tr>
+        <tr><td>学部学科</td><td colspan=3><%= @uni.major %></td></tr>
+        <tr><td>所在地</td><td colspan=3><%= @uni.location %></td></tr>
+        <tr><td>試験方法</td><td colspan=3>
+            <% if @uni.glouping %>
+            推薦
+            <% else %>
+			学力
+            <% end %></td></tr>
+        <tr><td>願書提出期間</td><td colspan=3>
+            <%= @uni.uni_app.start.strftime("%Y年%m月%d日") %> ～
+            <%= @uni.uni_app.end.strftime("%Y年%m月%d日") %></td></tr>
+        <tr><td>提出した書類</td><td colspan=3>
+            <% if @uni.uni_submission.result %>
+              ・成績証明書 <br />
+            <% end %>
+            <% if @uni.uni_submission.survey %>
+              ・調査書 <br />
+            <% end %>
+            <% if @uni.uni_submission.recommendation %>
+              ・推薦書 <br />
+            <% end %>
+            <% if @uni.uni_submission.reason %>
+              ・志望理由書
+              <% if !@uni.uni_submission.reason_details.blank? %>
+                &nbsp;詳細 : <%= simple_format(@uni.uni_submission.reason_details)%>
+              <% else %>
+                 <br />
+              <% end %>
+            <% end %>
+            <% if @uni.uni_submission.other.blank? %>
+              <%= @uni.uni_submission.other %>
+            <% end %></td></tr>
+        <tr><td>試験期間</td><td colspan=3>
+            <%= @uni.uni_exam.start.strftime("%Y年%m月%d日") %> ～
+            <%= @uni.uni_exam.end.strftime("%Y年%m月%d日") %>
+        </tr>
+
+        <% if !@uni.uni_subjects.empty? %>
+          <tr><td rowspan= <%= @uni.uni_subjects.size + 1 -%> >筆記試験</td>
+                <td width=20%>科目名</td>
+                <td width=10%>試験時間</td>
+                <td>詳細</td></tr>
+          <% @uni.uni_subjects.each do |uni_subject| %>
+            <tr>
+              <td><%= uni_subject.subject %></td>
+              <td><%= uni_subject.time %>分</td>
+              <td><%= simple_format(uni_subject.details) %></td>
+            </tr>
+          <% end %>
+        <% end %>
+
+        <% if @uni.uni_interview.deatails.present? %>
+          <tr><td rowspan=<%= @interview_row %> >面接</td>
+            <td width=20%>面接官の人数</td><td colspan=2><%= @uni.uni_interview.candidates %>人</td></tr>
+          <% if @uni.uni_interview.examiners %>
+            <tr><td>集団面接の人数</td><td colspan=2><%= @uni.uni_interview.examiners %>人</td></tr>
+          <% end %>
+          <tr><td>面接時間</td><td colspan=2><%= @uni.uni_interview.time %>分</td></tr>
+          <tr><td colspan=3><%= simple_format(@uni.uni_interview.deatails) %></td></tr>
+        <% end %>
+
+        <tr><td>結果発表日</td><td colspan=3><%= @uni.uni_result.day.strftime("%Y年%m月%d日") %></td></tr>
+        <tr><td>結果</td><td colspan=3>
+          <% if @uni.uni_result.result %>
+            合格
+          <% else %>
+            不合格
+          <% end %></td></tr>
+        <tr><td>感想</td><td colspan=3><%= @uni.impression %></td></tr>
+        <tr><td>後輩へのアドバイス</td><td colspan=3><%= simple_format(@uni.advice) %></td></tr>
+    </tbody>
+</table>
+<center>
+  <!-- @uniから読み出し、各要素を配置 -->
+  <p>面接の配置</p>
+  <% strary = @uni.draw.txt.split(",") %>
+  <div id = "jquery-ui-draggable-wrap" class = "ui-widget-content">
+	<% i = 0 %>
+	<% while i < strary.length %>
+      <% p_top = strary[i + 1].to_i - 25 - 50*(i / 3)%>
+	  <% p_left = strary[i + 2].to_i - 261 %>
+	
+	  <% if strary[i] == "me" %>
+        <div class="object" style="position:relative; top:<%= p_top %>px; left:<%= p_left %>px;">
+	      <img src="../../assets/me.png">
+	    </div>
+	  <% elsif strary[i] == "interviewer" %>
+        <div class="object" style="position:relative; top:<%= p_top %>px; left:<%= p_left %>px;">
+	      <img src="../../assets/interviewer.png">
+	    </div>
+	  <% end %>
+      <% i += 3 %>
+    <% end %>
+	<!-- ここに要素を配置する -->
+  </div>
+</center>
+<br/>
+<!-- <%= @json %> -->
+<center><p>地図</p></center>
+<%= gmaps("map_options" => { "detect_location" => true,  "center_on_user" => true, "auto_zoom" => false, "zoom" => 16},"markers" => { "data" => @json }) %>
+
+<!-- "auto_zoom" => false, -->

@@ -1,0 +1,7 @@
+<%= stylesheet_link_tag "draws", :media => "all" %>
+
+
+
+<h1>面接の様子を新規作成</h1>
+
+<%= render 'form' %>

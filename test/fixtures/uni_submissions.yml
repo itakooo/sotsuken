@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  uni: 
+  result: false
+  survey: false
+  recommendation: false
+  other: MyString
+  reason: false
+  reason_details: MyText
+
+two:
+  uni: 
+  result: false
+  survey: false
+  recommendation: false
+  other: MyString
+  reason: false
+  reason_details: MyText

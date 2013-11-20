@@ -1,0 +1,31 @@
+<h1>Listing uni_interviews</h1>
+
+<table>
+  <tr>
+    <th>Uni</th>
+    <th>Candidates</th>
+    <th>Examiners</th>
+    <th>Time</th>
+    <th>Deatails</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @uni_interviews.each do |uni_interview| %>
+  <tr>
+    <td><%= uni_interview.uni %></td>
+    <td><%= uni_interview.candidates %></td>
+    <td><%= uni_interview.examiners %></td>
+    <td><%= uni_interview.time %></td>
+    <td><%= uni_interview.deatails %></td>
+    <td><%= link_to 'Show', uni_interview %></td>
+    <td><%= link_to 'Edit', edit_uni_interview_path(uni_interview) %></td>
+    <td><%= link_to 'Destroy', uni_interview, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Uni interview', new_uni_interview_path %>

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  emp_selection: 
+  kind: 1
+  details: MyText
+
+two:
+  emp_selection: 
+  kind: 1
+  details: MyText

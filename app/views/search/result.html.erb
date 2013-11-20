@@ -1,0 +1,27 @@
+
+<%= render 'form' %>
+
+
+<% if @target=="false" %>
+  
+  <% if @emps.blank? %>
+    <div>
+    見つかりませんでした
+    </div>
+  <% else %>
+    <h3>就職報告書 検索結果</h3>
+    <%= render 'emps/index_table' %>
+  <% end %>
+
+<% else %>
+  
+  <% if @unis.blank? %>
+    <div>
+    検索結果が見つかりませんでした
+    </div>
+  <% else %>
+    <h3>進学報告書 検索結果</h3>
+    <%= render 'unis/index_table' %>
+  <% end %>
+  
+<% end %>

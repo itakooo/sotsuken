@@ -1,0 +1,33 @@
+<%= javascript_include_tag "my" %>
+
+<%= form_for(@uni, :url => @form_to,:html => {:class => "form-horizontal"}) do |f| %>
+  <% if @uni.errors.any? %>
+    <div id="error_explanation">
+      <h2>進路報告書編集 4/4</h2>
+
+      <ul>
+      <% @uni.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+        <%= f.label :impression, '感想', {:class => "control-label"} %>
+        <div class="controls">
+          <%= f.text_area :impression, {:class=>"span6",:rows=>8} %>
+        </div>
+  </div>
+  
+  <div class="control-group">
+        <%= f.label :advice, '後輩へのアドバイス', {:class => "control-label"} %>
+        <div class="controls">
+          <%= f.text_area :advice, {:class=>"span6",:rows=>8} %>
+        </div>
+  </div>
+  
+  <div class="form-actions" style="background-color: transparent;">
+    <%= f.submit '登録', :class => "btn"%>
+  </div>
+<% end %>

@@ -1,0 +1,45 @@
+  
+  <h3>進学試験報告書の検索</h3>
+  
+  <%= form_tag({:action => 'result_uni'}, {:class => "form-horizontal"}) do %>
+    
+    <div class="control-group">
+      <label class="control-label">学校名</label>
+      <div class="controls">
+        <%= text_field_tag :name, '',{:class => "input-medium search-query"} %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label">学科</label>
+      <div class="controls">
+        <%= text_field_tag :major, '',{:class => "input-medium search-query"} %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label">学校の所在地</label>
+      <div class="controls">
+        <%= text_field_tag :location, '',{:class => "input-medium search-query"} %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label">入試方法</label>
+      <div class="controls">
+        <%= select_tag :glouping, options_for_select( {"推薦" => "suisen", "学力" => "jiyu"}),
+                    {:include_blank => true, :class => "span3"} %>
+      </div>
+    </div>
+    
+    <div class="control-group">
+      <label class="control-label">科目</label>
+      <div class="controls">
+        <%= text_field_tag :subjects, '',{:class => "input-medium search-query"} %>
+      </div>
+    </div>
+    
+    <div class="form-actions" style="background-color: transparent;">
+      <%= submit_tag '検索', {:class => "btn"}%>
+    </div>
+  <% end %>

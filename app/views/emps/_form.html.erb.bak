@@ -1,0 +1,49 @@
+<%= form_for(@emp) do |f| %>
+  <% if @emp.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@emp.errors.count, "error") %> prohibited this emp from being saved:</h2>
+
+      <ul>
+      <% @emp.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :account %><br />
+    <%= f.number_field :account %>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :location %><br />
+    <%= f.text_field :location %>
+  </div>
+  <div class="field">
+    <%= f.label :glouping %><br />
+    <%= f.check_box :glouping %>
+  </div>
+  <div class="field">
+    <%= f.label :submit %><br />
+    <%= f.date_select :submit %>
+  </div>
+  <div class="field">
+    <%= f.label :entrysheet %><br />
+    <%= f.text_area :entrysheet %>
+  </div>
+  <div class="field">
+    <%= f.label :implession %><br />
+    <%= f.text_area :implession %>
+  </div>
+  <div class="field">
+    <%= f.label :advice %><br />
+    <%= f.text_area :advice %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

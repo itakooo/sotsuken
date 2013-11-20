@@ -1,0 +1,28 @@
+
+<div class=table>
+<table>
+  <tr>
+    <th>選考</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @emp.emp_selections.each do |emp_selection| %>
+  <tr>
+    <td>
+        <% if emp_selection.glouping == 4 %>
+            最終
+        <% else %>
+            <%= emp_selection.glouping %>次
+        <% end %>
+    </td>
+    <td><%= link_to '編集', edit_emp_emp_selection_path(@emp,emp_selection), :style=>"background-color:transparent;" %></td>
+    <td><%= link_to '削除', emp_emp_selection_path(@emp,emp_selection), confirm: 'Are you sure?', method: :delete, :style=>"background-color:transparent;" %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+
+<%= link_to '選考追加', new_emp_emp_selection_path(@emp),:class => "btn" %>
+

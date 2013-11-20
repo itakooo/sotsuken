@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  student_id: MyString
+  name: MyString
+  major: 1
+  password: MyString
+  admin: false
+
+two:
+  student_id: MyString
+  name: MyString
+  major: 1
+  password: MyString
+  admin: false

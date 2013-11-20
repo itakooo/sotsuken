@@ -1,0 +1,8 @@
+<% if flash[:edit_selection] %>
+<h2>就職報告書編集 3/3</h2>
+<% else %>
+<h2>就職報告書新規作成 3/3</h2>
+<% end %>
+感想、後輩へのアドバイスを入力してください。
+<%= render 'form_impression' %>
+

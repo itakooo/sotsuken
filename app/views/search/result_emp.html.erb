@@ -1,0 +1,19 @@
+<% content_for :extend do %>
+  <div class="row-fluid">
+    <div class="span2">
+    </div>
+    <div class="span8 waku" style="background-color:#ffffff;">
+      <%= render 'form_emp' %>
+    </div>
+    <div class="span2">
+    </div>
+  </div>
+<% end %>
+
+<% if @emps.blank? %>
+  <h3>就職試験報告書 検索結果</h3>
+  見つかりませんでした。
+<% else %>
+  <h3>就職試験報告書 検索結果</h3>
+  <%= render 'emps/index_table' %>
+<% end %>

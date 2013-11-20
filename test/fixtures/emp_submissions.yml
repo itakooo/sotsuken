@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  emp: 
+  graduate: false
+  result: false
+  resume: false
+  recommendation: false
+  medical: false
+  other: MyString
+
+two:
+  emp: 
+  graduate: false
+  result: false
+  resume: false
+  recommendation: false
+  medical: false
+  other: MyString

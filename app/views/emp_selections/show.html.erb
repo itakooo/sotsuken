@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Emp:</b>
+  <%= @emp_selection.emp %>
+</p>
+
+<p>
+  <b>Glouping:</b>
+  <%= @emp_selection.glouping %>
+</p>
+
+<p>
+  <b>Start:</b>
+  <%= @emp_selection.start %>
+</p>
+
+<p>
+  <b>End:</b>
+  <%= @emp_selection.end %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%= @emp_selection.location %>
+</p>
+
+<p>
+  <b>Result date:</b>
+  <%= @emp_selection.result_date %>
+</p>
+
+<p>
+  <b>Result:</b>
+  <%= @emp_selection.result %>
+</p>
+
+
+<%= link_to 'Edit', edit_emp_selection_path(@emp_selection) %> |
+<%= link_to 'Back', emp_selections_path %>

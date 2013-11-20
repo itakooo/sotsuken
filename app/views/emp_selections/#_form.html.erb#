@@ -1,0 +1,150 @@
+<%= javascript_include_tag "my" %>
+<%= form_for(@emp_selection, :url => @form_to, :html => {:class => "form-horizontal"}) do |f| %>
+  <% if @emp_selection.errors.any? %>
+    <div id="error_explanation">
+      <h2>選考基本情報に関して、以下の項目を修正してください</h2>
+
+      <ul>
+      <% @emp_selection.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <% if @emp_selection.emp_essay.errors.any? %>
+    <div id="error_explanation">
+      <h2>小論文試験に関して、以下の項目を修正してください</h2>
+
+      <ul>
+      <% @emp_selection.emp_essay.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <% if @emp_selection.emp_interview.errors.any? %>
+    <div id="error_explanation">
+      <h2>面接試験に関して、項目を修正してください</h2>
+
+      <ul>
+      <% @emp_selection.emp_interview.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <%= field_set_tag '選考基本情報' do %>
+    選考情報を入力してください
+    <div class="control-group">
+      <%= f.label :glouping, '選考区分',{:class => "control-label"} %>
+      <div class="controls">
+        <%= f.select( :glouping,{'1次' => 1, '2次' => 2, '3次' => 3, '最終' => 4},{},{:class => "span1"}) %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :location, '選考会場',{:class => "control-label"} %>
+      <div class="controls">
+        <%= f.text_field :location,{:class => "span3"} %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :start, '選考日',{:class => "control-label"} %>
+      <div class="controls">
+        <%= f.date_select :start, {:use_month_numbers => true},{:class => "span1"} %>
+        　～　<%= f.date_select :end, {:use_month_numbers => true},{:class => "span1"} %>
+      </div>
+    </div>    
+    <div class="control-group">
+      <%= f.label :result_date, '結果発表日',{:class => "control-label"} %>
+      <div class="controls">
+        <%= f.date_select :result_date, {:use_month_numbers => true}, {:class => "span1"} %>
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :result, '結果',{:class => "control-label"} %>
+      <div class="controls">
+        <%= f.select( :result,{'合格' => true, '不合格' => false},{},{:class => "span2"}) %>
+      </div>
+    </div>
+  <% end %>
+  
+  <%= field_set_tag '筆記試験' do %>
+    筆記試験があった方のみ入力してください。
+      <%= fields_for @emp_selection.emp_test do |t| %>
+        <div class = "control-group">
+            <%= t.label :kind,'試験の種類',{:class => "control-label"} %>
+            <div class="controls">
+              <%= t.select( :kind,{'会社独自' => 1, 'SPI' => 2, 'その他' =>3},
+                      {:include_blank => '選択してください'},{:class => "span2"}) %>
+            </div>
+        </div>
+        <div class = "control-group">
+            <%= t.label :details, '詳細（問題の内容等）',{:class => "control-label"} %>
+            <div class="controls">
+              <%= t.text_area :details,{:class=>"span4",:rows=>8} %>
+            </div>
+        </div>
+      <% end %>
+  <% end %>
+  
+  <%= field_set_tag '小論文試験' do %>
+    小論文試験があった方のみ入力してください。
+    <%= fields_for @emp_selection.emp_essay do |e|%>
+        <div class = "control-group">
+            <%= e.label :time, '試験時間(分)',{:class => "control-label"} %>
+            <div class="controls">
+              <%= e.number_field :time, {:size => 3,:maxlength => 15, :step => 5, :class => "span1"} %>
+              <p class="help-block">※半角数字 0以上</p>
+            </div>
+        </div>
+        <div class = "control-group">
+            <%= e.label :details, '詳細（題名等）',{:class => "control-label"} %>
+            <div class="controls">
+              <%= e.text_area :details, {:class=>"span4",:rows=>8} %>
+            </div>
+        </div>
+    <% end %>
+  <% end %>
+  
+  <%= field_set_tag '面接' do %>
+    面接試験の内容を登録してください。
+    <%= fields_for @emp_selection.emp_interview do |i|%>
+        <div class = "control-group">
+            <%= i.label :candidates, '面接官(人)',{:class => "control-label"} %>
+            <div class="controls">
+              <%= i.number_field :candidates, {:size => 3,:maxlength => 5, :step => 1, :class => "span1"} %>
+              <p class="help-block">※半角数字 0以上</p>
+            </div>
+        </div>
+        <div class = "control-group">
+            <%= i.label :examiners, '（集団面接の場合のみ）同時に面接を受けた人数(人)',{:class => "control-label"} %>
+            <div class="controls">
+              <%= i.number_field :examiners, {:size => 3,:maxlength => 5, :step => 1, :class => "span1"} %>
+              <p class="help-block">※半角数字 0以上</p>
+            </div>
+        </div>
+        <div class = "control-group">
+            <%= i.label :time, '試験時間(分)',{:class => "control-label"} %>
+            <div class="controls">
+              <%= i.number_field :time, {:size => 3,:maxlength => 15, :step => 5, :class => "span1"} %>
+              <p class="help-block">※半角数字 0以上</p>
+            </div>
+        </div>
+        <div class = "control-group">
+            <%= i.label :details, '面接の内容（できるだけ詳細に)',{:class => "control-label"} %>
+            <div class="controls">
+              <%= i.text_area :details,{:class=>"span4",:rows=>8} %>
+            </div>
+        </div>
+    <% end %>
+  <% end %>
+  
+  <div class="form-actions">
+	<%= link_to_function "前へ", "history.back()", :class=>"btn"%>
+    <%= f.submit '次へ',:class=>"btn"%>
+  </div>
+  
+<% end %>
