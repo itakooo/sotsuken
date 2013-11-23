@@ -9,9 +9,9 @@ var x_list = [];
 var $interviewers = [];
 var $me = null;
 var $whiteboards;
-var txt = "";
+var $stickies = [];
 
-// interviewer
+// 面接官ボタン
 $( function() {
 	$( '#interviewer' ).click( function(evt) {
 		var $tmp = $('<div class = "object"><img src = "/assets/interviewer.png" ></div>')
@@ -23,26 +23,18 @@ $( function() {
 			.appendTo('div.ui-widget-content')
 			.draggable( {
 				containment: "#jquery-ui-draggable-wrap",
-				grid: [10, 10],
+				grid: [25, 25],
 				opacity: 0.5,
 				scroll: false,
-				stop: function(e, ui) {
-					// alert(' top: ' + ui.position.top + ' left : ' + ui.position.left);
-					// x_list.push(ui.position.top)
-					
-					// for (var i = 0; i < x_list.length; i++){
-					// 	console.log(x_list[i]);
-					// }
-				}
 			});
 		$interviewers.push($tmp)
 	});
 });
 
-var cnt = 0; // click count ('me' button)
+var cnt = 0; // 自分カウンタ
 
 
-// me
+// 自分ボタン
 $( function() {
 	$( '#me' ).click( function(evt) {
 		cnt++;
@@ -57,14 +49,46 @@ $( function() {
 				.appendTo('div.ui-widget-content')
 				.draggable( {
 					containment: "#jquery-ui-draggable-wrap",
-					grid: [10, 10],
+					grid: [25, 25],
 					opacity: 0.5,
 					scroll: false
 				});
 		}});
 });
 
-// whiteboard
+// メモボタン
+$( function() {
+	$( '#addtext' ).click( function(evt) {
+		var txt = ""
+		var $tmp = $('<div class = "sticky">メモを入力してください</div>')
+			.dblclick( function() {
+				$(this).wrapInner('<textarea  maxlength="25"></textarea>')
+					.find('textarea')
+					.focus()
+					.select()
+					.blur( function() {
+						if ($(this).val() == ""){
+							$(this).remove();
+							console.log("removed");
+						} else {
+							$(this).parent().html($(this).val())
+							console.log($(this).val())
+						}
+					})
+			})
+			.css("position", "absolute")
+			.appendTo('div.ui-widget-content')
+			.draggable( {
+				containment: "#jquery-ui-draggable-wrap",
+				grid: [25, 25],
+				opacity: 0.5,
+				scroll: false
+			});
+		$stickies.push($tmp)
+	});
+});
+
+
 
 // clear button
 $( function() {
@@ -81,40 +105,28 @@ $( function() {
 $( function() {
 	$( '#save-button' ).click( function(evt) {
 		txt = "";
-		var parent_left = $("div.ui-widget-content").position().left;
-		var parent_top  = $("div.ui-widget-content").position().top;
+		// offsetで相対位置取得
+		var parent = $("div.ui-widget-content").offset()
 
 		// me がなければエラー？
 		if ($me != null) {
-			txt += "me,"
-			txt += ($me.position().top - parent_top).toFixed(1) + ",";
-			txt += ($me.position().left - parent_left).toFixed(1);
+			var child = $me.position();
+
+			txt += "me,";
+			txt += Math.floor((child.top - parent.top)/25).toString() + ",";
+			txt += Math.floor((child.left - parent.left)/25).toString();
 		}
 
 		for (var i = 0; i < $interviewers.length; i++){
+			var child = $interviewers[i].position();
 			txt += ",interviewer,";
-			txt += ($interviewers[i].position().top - parent_top).toFixed(1) + ",";
-			txt += ($interviewers[i].position().left - parent_left).toFixed(1);
+			txt += Math.floor((child.top - parent.top)/25).toString() + ",";
+			txt += Math.floor((child.left - parent.left)/25).toString();
 		}
+
+		// console.log($stickies[0].position())
 
 		console.log(txt);
 		document.getElementById('draw_txt').value = txt
 	});
 });
-
-// $( function() {
-// 	$("div.obj_me")
-// 		.dblclick( function() {
-// 			$(this).remove();
-// 			$me = null
-// 			cnt = 0;
-// 		})
-// 		.css("position", "absolute") // important
-// 		.appendTo('div.ui-widget-content')
-// 		.draggable( {
-// 			containment: "#jquery-ui-draggable-wrap",
-// 			grid: [10, 10],
-// 			opacity: 0.5,
-// 			scroll: false
-// 		});
-// });

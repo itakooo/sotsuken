@@ -92,9 +92,12 @@
   <div id = "jquery-ui-draggable-wrap" class = "ui-widget-content">
 	<% i = 0 %>
 	<% while i < strary.length %>
-      <% p_top = strary[i + 1].to_i - 25 - 50*(i / 3)%>
-	  <% p_left = strary[i + 2].to_i - 261 %>
-	
+      <!-- <% p_top = strary[i + 1].to_i - 25 - 50*(i / 3)%> -->
+	  <!-- <% p_left = strary[i + 2].to_i - 261 %> -->
+
+	  <% p_top = strary[i + 1].to_i * 25 - 50*(i / 3) %>
+	  <% p_left = (strary[i + 2].to_i + 1)* 25 - 280 %>
+
 	  <% if strary[i] == "me" %>
         <div class="object" style="position:relative; top:<%= p_top %>px; left:<%= p_left %>px;">
 	      <img src="../../assets/me.png">
